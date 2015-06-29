@@ -70,12 +70,12 @@ public class Divine {
 	}
 	
 	//幸運值計算
-	int[] L={0,0,0,0};
+	int[] L={0,0,0};
 	private int LuckValue(int lucky,int input){
 		Random random = new Random();
 		int[] num={1,2,3};	
 		int i , j ;
-		//隨機計算
+		//隨機分配L0 ~ L2
 		for(i=0;i<=2;i++){
 			j=random.nextInt(3);
 			while(num[j]==0)
@@ -83,7 +83,7 @@ public class Divine {
 			L[i]=num[j];
 			num[j]=0;
 		}	
-		return lucky + L[input-1];//回傳幸運值
+		return lucky + L[input-1];//回傳 原幸運值 + 新幸運值
 	}
 	
 }
