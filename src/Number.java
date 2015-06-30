@@ -11,7 +11,10 @@ public class Number {
 		System.out.println("會用通關時間來評價");
 		System.out.println("五秒後遊戲開始");
 		// 停止五秒
-		Thread.sleep(5000);
+		for(int count = 5;count > 0;count--){
+			System.out.println(count+"....");
+			Thread.sleep(1000);			
+		}
 		// 開始計時
 		long time1 = System.currentTimeMillis();
 		// Level 1
@@ -78,25 +81,28 @@ public class Number {
 		// 地圖大小 5 * 5
 		int[][] map = new int[5][5];
 		// 放入寶藏
-		map[new Random().nextInt(5)][new Random().nextInt(5)] = 1;
+		int index = new Random().nextInt(5);
+		int index2 = new Random().nextInt(5);
+		System.out.println("Index: "+index+" "+index2);
+		map[index][index2] = 1;
 		// 顯示地圖
 		showmap(map);
 		// 讀取輸入
 		System.out.println("行:");
 		String row = sc.next();
-		while(!row.matches("[0-4]")){
+		while(!row.matches("[1-5]")){
 			System.out.println("超出範圍 請重新輸入");
 			row = sc.next();
 		}
 		System.out.println("列:");
 		String col = sc.next();
-		while(!col.matches("[0-4]")){
+		while(!col.matches("[1-5]")){
 			System.out.println("超出範圍 請重新輸入");
 			col = sc.next();
 		}
-		while (map[Integer.parseInt(row)][Integer.parseInt(col)] != 1) {
+		while (map[Integer.parseInt(row)-1][Integer.parseInt(col)-1] != 1) {
 			//標示為猜過
-			map[Integer.parseInt(row)][Integer.parseInt(col)] = 2;
+			map[Integer.parseInt(row)-1][Integer.parseInt(col)-1] = 2;
 			//顯示地圖
 			showmap(map);
 			System.out.print("猜錯囉~~ 中陷阱   持續2秒");
@@ -104,19 +110,19 @@ public class Number {
 			System.out.println("再試一次");
 			System.out.println("行:");
 			row = sc.next();
-			while(!row.matches("[0-4]")){
+			while(!row.matches("[1-5]")){
 				System.out.println("超出範圍 請重新輸入");
 				row = sc.next();
 			}
 			System.out.println("列:");
 			col = sc.next();
-			while(!col.matches("[0-4]")){
+			while(!col.matches("[1-5]")){
 				System.out.println("超出範圍 請重新輸入");
 				col = sc.next();
 			}
 		}
 		//標示為寶藏
-		map[Integer.parseInt(row)][Integer.parseInt(col)] = 3;
+		map[Integer.parseInt(row)-1][Integer.parseInt(col)-1] = 3;
 		//顯示地圖
 		showmap(map);
 	}
